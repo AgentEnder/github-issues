@@ -1,4 +1,12 @@
 {
+  "env": {
+    "development": {
+      "plugins": ["./plugin-test.js"]
+    },
+    "production": {
+      "plugins": ["./plugin-prod.js"]
+    }
+  },
   "presets": [
     [
       "@nrwl/react/babel",
@@ -6,6 +14,5 @@
         "runtime": "automatic"
       }
     ]
-  ],
-  "plugins": []
+  ]
 }
