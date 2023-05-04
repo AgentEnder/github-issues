@@ -1,0 +1,29 @@
+{
+  "extends": "nx/presets/npm.json",
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "longTask",
+          "shortTask"
+        ]
+      }
+    }
+  },
+  "targetDefaults": {
+    "longTask": {
+      "outputs":[
+        "{workspaceRoot}/dist/long-task/**/*"
+      ],
+      "inputs": ["{workspaceRoot}/write-files.js"]
+    },
+    "shortTask": {
+      "outputs":[
+        "{workspaceRoot}/dist/short-task"
+      ],
+      "inputs": ["{workspaceRoot}/write-files.js"]
+    }
+  }
+}

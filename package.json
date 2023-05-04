@@ -1,0 +1,21 @@
+{
+  "name": "test-expensive-globs",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "longTask": "node write-files.js dist/long-task",
+    "shortTask": "node write-files.js dist/short-task"
+  },
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "nx": "15.8.7",
+    "prettier": "^2.6.2"
+  },
+  "nx": {
+    "includedScripts": [
+      "longTask",
+      "shortTask"
+    ]
+  }
+}
