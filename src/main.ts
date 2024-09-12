@@ -1,3 +1,5 @@
+import { foo } from '../libs/my-lib/src';
+
 import express from 'express';
 
 const host = process.env.HOST ?? 'localhost';
