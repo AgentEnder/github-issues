@@ -1,0 +1,6 @@
+{
+  "name": "api",
+  "scripts": {
+    "serve": "node ./index.js"
+  }
+}
