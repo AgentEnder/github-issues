@@ -1,0 +1,3 @@
+node_modules
+dist
+@types/i18next/resources.d.ts

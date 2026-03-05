@@ -1,0 +1,9 @@
+{
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "Preserve"
+	},
+	"include": ["./**/*.ts"],
+	"exclude": ["./node_modules", "apps"] // * TSConfig will be configured in each app, this file is only for TS linting the non-apps files
+}

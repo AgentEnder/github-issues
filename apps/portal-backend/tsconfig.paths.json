@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"paths": {
+			"@/helpers/*": ["./src/helpers/*"],
+			"@/decorators/*": ["./src/decorators/*"],
+			"@/libs/*": ["./src/modules/libs/*"]
+		}
+	}
+}

@@ -1,0 +1,72 @@
+{
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"name": "portal-backend",
+	"sourceRoot": "apps/portal-backend/src",
+	"projectType": "application",
+	"tags": ["portal", "server"],
+	"targets": {
+		"start:dev": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "dotenv -e ./.env.development -- nest start --watch",
+				"cwd": "{projectRoot}"
+			},
+			"cache": false,
+			"continuous": true
+		},
+		"build": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "nest build",
+				"cwd": "{projectRoot}"
+			},
+			"inputs": [
+				"{projectRoot}/nest-cli.json",
+				"{projectRoot}/src",
+				"{projectRoot}/package.json",
+				"{projectRoot}/@types",
+				"{workspaceRoot}/tsconfig.base.json",
+				"{projectRoot}/tsconfig.base.json",
+				"{projectRoot}/tsconfig.paths.json"
+			],
+			"cache": true,
+			"outputs": ["{projectRoot}/dist"]
+		},
+		"type-check": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "tsc --project ./tsconfig.json",
+				"cwd": "{projectRoot}"
+			},
+			"inputs": [
+				"{projectRoot}/src",
+				"{projectRoot}/tsconfig.json",
+				"{projectRoot}/package.json",
+				"{projectRoot}/tsconfig.base.json",
+				"{projectRoot}/tsconfig.paths.json",
+				"{workspaceRoot}/tsconfig.base.json",
+				"{projectRoot}/@types"
+			],
+			"outputs": ["{projectRoot}/tsconfig.tsbuild"],
+			"cache": true
+		},
+		"compodoc": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "compodoc && open-cli ./documentation/index.html",
+				"cwd": "{projectRoot}"
+			},
+			"inputs": [
+				"{projectRoot}/src",
+				"{projectRoot}/tsconfig.doc.json",
+				"{projectRoot}/package.json",
+				"{projectRoot}/tsconfig.base.json",
+				"{projectRoot}/tsconfig.paths.json",
+				"{workspaceRoot}/tsconfig.base.json",
+				"{projectRoot}/.compodocrc.json"
+			],
+			"outputs": ["{projectRoot}/documentation"],
+			"cache": true
+		}
+	}
+}

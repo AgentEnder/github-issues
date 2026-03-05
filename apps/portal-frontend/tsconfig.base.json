@@ -1,0 +1,12 @@
+{
+	"extends": ["./tsconfig.paths.json", "../../tsconfig.base.json"],
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "Preserve",
+		"jsx": "preserve",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"sourceMap": true,
+		"downlevelIteration": true,
+		"typeRoots": ["./node_modules/@types", "./@types"]
+	}
+}

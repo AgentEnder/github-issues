@@ -1,0 +1,65 @@
+{
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"name": "portal-frontend",
+	"sourceRoot": "apps/portal-frontend/src",
+	"projectType": "application",
+	"tags": ["portal", "client"],
+	"targets": {
+		"i18n-type-safe": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "i18next-resources-for-ts interface -i ./src/i18n/locales/en -o ./@types/i18next/resources.d.ts",
+				"cwd": "{projectRoot}"
+			},
+			"inputs": ["{projectRoot}/src/i18n/locales/**/*"],
+			"outputs": ["{projectRoot}/@types/i18next/resources.d.ts"],
+			"cache": true
+		},
+		"start:dev": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "vite -c ./vite.config.ts",
+				"cwd": "{projectRoot}"
+			},
+			"dependsOn": ["i18n-type-safe"],
+			"cache": false,
+			"continuous": true
+		},
+		"build": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "vite build -c ./vite.config.ts",
+				"cwd": "{projectRoot}"
+			},
+			"inputs": [
+				"{projectRoot}/src",
+				"{projectRoot}/public",
+				"{projectRoot}/index.html",
+				"{projectRoot}/@types",
+				"{workspaceRoot}/tsconfig.base.json",
+				"{projectRoot}/tsconfig.base.json",
+				"{projectRoot}/package.json"
+			],
+			"dependsOn": ["i18n-type-safe"],
+			"outputs": ["{projectRoot}/dist"],
+			"cache": true
+		},
+		"type-check": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "tsc --project ./tsconfig.json",
+				"cwd": "{projectRoot}"
+			},
+			"inputs": [
+				"{projectRoot}/src",
+				"{projectRoot}/tsconfig.json",
+				"{projectRoot}/tsconfig.base.json",
+				"{workspaceRoot}/tsconfig.base.json",
+				"{projectRoot}/package.json",
+				"{projectRoot}/@types"
+			],
+			"outputs": ["{projectRoot}/tsconfig.tsbuild"],
+			"cache": true
+		}
+	}
+}

@@ -1,0 +1,40 @@
+{
+	"$schema": "./node_modules/nx/schemas/project-schema.json",
+	"name": "workspace",
+	"projectType": "application",
+	"targets": {
+		"cluster:start": {
+			"cache": false,
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "bun run ./scripts/cluster-start.ts"
+			}
+		},
+		"cluster:stop": {
+			"cache": false,
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "bun run ./scripts/cluster-stop.ts"
+			}
+		},
+		"portal:open:dev": {
+			"cache": false,
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "bun run ./scripts/portal-open-dev.ts"
+			}
+		},
+		"dev": {
+			"cache": false,
+			"executor": "nx:noop",
+			"continuous": true,
+			"dependsOn": [
+				"portal:open:dev",
+				{
+					"target": "start:dev",
+					"projects": ["tag:portal"]
+				}
+			]
+		}
+	}
+}
