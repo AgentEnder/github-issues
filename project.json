@@ -26,7 +26,7 @@
 		},
 		"dev": {
 			"cache": false,
-			"executor": "nx:noop",
+			"command": "tail -f /dev/null",
 			"continuous": true,
 			"dependsOn": [
 				"portal:open:dev",
